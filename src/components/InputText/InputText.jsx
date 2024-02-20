@@ -33,13 +33,19 @@ const Input = styled.input`
         outline: 1px solid hsl(213, 96%, 18%);
     }
 `
+const SpanErrorMsg = styled.span`
+    font-size: 14px;
+    font-weight: 700;
+    color: hsl(354, 84%, 57%);
+`
 
-function NumberBtn({labelFor, labelText, inputType, inputIid, inputPlaceholder}) {
+function NumberBtn({labelFor, labelText, inputType, inputIid, inputPlaceholder, errorMsg}) {
 
     return (
         <Fieldset>
-            <Label for={labelFor}>{labelText}</Label>
+            <Label htmlFor={labelFor}>{labelText}</Label>
             <Input type={inputType} id={inputIid} placeholder={inputPlaceholder} />
+            <SpanErrorMsg>{errorMsg}</SpanErrorMsg>
         </Fieldset>
     )
 }
