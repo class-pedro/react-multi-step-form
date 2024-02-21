@@ -11,6 +11,17 @@ export const StepContainer = styled.div`
     position: absolute;
     top: 110px;
     display: ${props => props.display || 'none'};
+
+    & #thank__you__img {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    & #thank__you__img img {
+        text-align: center;
+        margin-top: 80px;
+    }
 `
 // function StepContainer() {
 

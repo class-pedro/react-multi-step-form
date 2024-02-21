@@ -4,7 +4,10 @@ const SwitchContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 40px 0 10px 0;
+    margin: 0;
+    background-color: hsl(231, 100%, 99%);
+    padding: 20px;
+    border-radius: 10px;
 
     & label {
         position: relative;

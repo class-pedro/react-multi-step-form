@@ -6,7 +6,7 @@ const FooterContainer = styled.div`
     background-color: white;
     width: 100%;
     padding: 20px 0;
-    display: flex;
+    display: ${prop => prop.display || "flex"};
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
@@ -45,14 +45,17 @@ const FooterBackButton = styled.button`
     }
 `
 
-function FormFooter({nextButtonText, backButtonDisplay}) {
+function FormFooter({ display, nextClickFunction, nextButtonText, backClickFunction, backButtonDisplay }) {
 
     return (
-        <FooterContainer>
-            <FooterNextButton>
+        <FooterContainer display={display}>
+            <FooterNextButton
+                onClick={nextClickFunction}
+            >
                 {nextButtonText}
             </FooterNextButton>
             <FooterBackButton
+                onClick={backClickFunction}
                 display={backButtonDisplay}
             >
                 Go Back

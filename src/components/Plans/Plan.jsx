@@ -4,7 +4,7 @@ const PlanContainer = styled.li`
     display: flex;
     border: 1px solid hsl(229, 24%, 87%);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
 
     &:hover {
         cursor: pointer;
@@ -16,13 +16,14 @@ const PlanContainer = styled.li`
     }
 
     & h2 {
+        font-size: 1.25em;
         margin: 0 0 5px 0;
         font-weight: 700;
         color: hsl(213, 96%, 18%);
     }
     
     & p {
-        margin: 0;
+        margin: 0 0 5px 0;
         color: hsl(231, 11%, 63%);
         display: block;
     }
