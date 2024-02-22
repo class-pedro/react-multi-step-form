@@ -25,24 +25,29 @@ const HeaderContainer = styled.header`
     /* Responsiveness */
     @media (min-width: 1000px) {
         background: url(${desktopHeaderBg});
+        
     }
 `
 
-function Header() {
+function Header({ btnBgColor }) {
 
     return (
         <HeaderContainer>
             <div>
                 <NumberBtn
+                    bgColor={btnBgColor}
                     children='1'
                 />
                 <NumberBtn
+                    bgColor={btnBgColor}
                     children='2'
                 />
                 <NumberBtn
+                    bgColor={btnBgColor}
                     children='3'
                 />
                 <NumberBtn
+                    bgColor={btnBgColor}
                     children='4'
                 />
             </div>

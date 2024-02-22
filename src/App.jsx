@@ -18,7 +18,7 @@ import arcadeImg from "./assets/images/icon-arcade.svg";
 import advancedImg from "./assets/images/icon-advanced.svg";
 import proImg from "./assets/images/icon-pro.svg";
 import thankYouImage from "./assets/images/icon-thank-you.svg";
-import { useState } from "react";
+import { Children, useState } from "react";
 import PurpleCheckbox from "./components/AddOns/PurpleCheckbox";
 
 const MainContainer = styled.form`
@@ -53,7 +53,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header btnBgColor="red"/>
       <MainContainer>
 
         {/* Step 1 */}

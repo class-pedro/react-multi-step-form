@@ -3,7 +3,7 @@ import styled from "styled-components";
 const CheckboxContainer = styled.label`
     position: relative;
     padding: 0;
-    margin: 0 25px 25px 0;
+    margin: 0 25px 25px 8.5px;
     cursor: pointer;
     
     // Condicional para o funcionamento do Checkbox

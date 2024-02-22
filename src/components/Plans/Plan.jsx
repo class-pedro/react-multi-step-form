@@ -6,11 +6,6 @@ const PlanContainer = styled.li`
     border-radius: 10px;
     padding: 15px;
 
-    &:hover {
-        cursor: pointer;
-        border: 1px solid hsl(231, 11%, 63%);
-    }
-
     & img {
         margin-right: 20px;
     }
@@ -31,6 +26,13 @@ const PlanContainer = styled.li`
     & span {
         display: ${props => props.display || 'none'};
         color: hsl(213, 96%, 18%);
+    }
+
+    @media (min-width: 1024px) {
+        &:hover {
+            cursor: pointer;
+            border: 1px solid hsl(231, 11%, 63%);
+        }
     }
 `
 

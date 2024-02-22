@@ -21,12 +21,14 @@ const FooterNextButton = styled.button`
     padding: 15px;
     font-size: 14px;
     letter-spacing: 1px;
-    cursor: pointer;
     margin-right: 15px;
 
-    &:hover {
-        background-color: hsl(243, 100%, 62%);
-        box-shadow: 0 0 30px hsla(243, 100%, 62%, 0.288);
+    @media (min-width: 1024px) {
+        &:hover {
+            background-color: hsl(243, 100%, 62%);
+            box-shadow: 0 0 30px hsla(243, 100%, 62%, 0.288);
+            cursor: pointer;
+        }
     }
 `
 
@@ -38,10 +40,12 @@ const FooterBackButton = styled.button`
     color: hsl(231, 11%, 63%);
     background-color: transparent;
     border: none;
-    cursor: pointer;
 
-    &:hover {
-        text-decoration: underline;
+    @media (min-width: 1024px) {
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
 `
 
