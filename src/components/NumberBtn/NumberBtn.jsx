@@ -3,11 +3,11 @@ import styled from "styled-components"
 const NumBtnContainer = styled.button`
     width: 35px;
     height: 35px;
-    background-color: ${prop => prop.bgColor || "#cccccc1c"};
+    background-color: ${prop => prop.bg_color || "#cccccc1c"};
     border-radius: 50%;
-    color: white;
+    color: ${prop => prop.color || "hsl(206, 94%, 87%)"};
     font-weight: 700;
-    border: 1px solid white;
+    border: 1px solid hsl(206, 94%, 87%);
 
     @media (min-width: 1024px) {
         &:hover {
@@ -17,11 +17,12 @@ const NumBtnContainer = styled.button`
     }
 `
 
-function NumberBtn({ children, bg_color }) {
-
+function NumberBtn({ children, bg_color, color, onClickFunction }) {
     return (
         <NumBtnContainer
-            bgColor={bg_color}
+            bg_color={bg_color}
+            color={color}
+            onClick={onClickFunction}
         >
             {children}
         </NumBtnContainer>

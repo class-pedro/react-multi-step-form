@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Header from "./components/Header/Header";
+import { HeaderContainer } from "./components/Header/Header";
 
 import { StepContainer } from "./components/StepContainer/StepContainer";
 import { Title } from "./components/Title/Title";
@@ -21,10 +21,12 @@ import thankYouImage from "./assets/images/icon-thank-you.svg";
 import { Children, useState } from "react";
 
 import FinishPlan from "./components/FinishingUp/FinishPlan";
+import NumberBtn from "./components/NumberBtn/NumberBtn";
+import { NumberContainer } from "./components/NumberBtn/NumberContainer";
 
 
 
-const MainContainer = styled.form`
+const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,10 +56,43 @@ function App() {
     setYearlyPlan(!yearlyPlan);
   }
 
+  function handleNextClickBtn(index) {
+    setIndex(index);
+  }
+
   return (
     <>
-      <Header btnBgColor="red"/>
-      <MainContainer>
+      <HeaderContainer>
+        <NumberContainer>
+          <NumberBtn
+            children='1'
+            bg_color={index == 1 ? "hsl(206, 94%, 87%)" : "transparent"}
+            color={index == 1 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"}
+            onClickFunction={() => handleNextClickBtn(1)}
+          />
+          <NumberBtn
+            children='2'
+            bg_color={index == 2 ? "hsl(206, 94%, 87%)" : "transparent"}
+            color={index == 2 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"
+            }
+            onClickFunction={() => handleNextClickBtn(2)}
+          />
+          <NumberBtn
+            children='3'
+            bg_color={index == 3 ? "hsl(206, 94%, 87%)" : "transparent"}
+            color={index == 3 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"}
+            onClickFunction={() => handleNextClickBtn(3)}
+          />
+          <NumberBtn
+            children='4'
+            bg_color={index == 4 ? "hsl(206, 94%, 87%)" : "transparent"}
+            color={index == 4 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"}
+            onClickFunction={() => handleNextClickBtn(4)}
+          />
+        </NumberContainer>
+      </HeaderContainer>
+
+      <FormContainer>
 
         {/* Step 1 */}
         <StepContainer
@@ -124,7 +159,7 @@ function App() {
         >
           <Title>Pick add-ons</Title>
           <Paragraph>Add-ons help enhance your gaming experience.</Paragraph>
-          
+
           <AddOns
             serviceName="Online service" serviceDescription="Access to multiplayer games"
             servicePrice={yearlyPlan == false ? "1/mo" : "10/yr"}
@@ -140,17 +175,25 @@ function App() {
           />
         </StepContainer>
 
-        {/* Step 4 */}
+        {/* Step 4 Finishing UP */}
         <StepContainer
           display={index == 4 ? "block" : "none"}
         >
           <Title>Finishing up</Title>
           <Paragraph>Double-check everything looks OK before confirming.</Paragraph>
 
-          <FinishPlan />
+          <FinishPlan planName="Arcade"
+            planRecurrence="Monthly"
+            planPrice="9"
+            extraName="Online Service"
+            extraPrice="1"
+            monthOrYear="month"
+            totalPrice="14"
+            planAbreviation="mo"
+          />
         </StepContainer>
 
-        {/* Step 5 */}
+        {/* Step 5  Thanks Page */}
         <StepContainer
           display={index == 5 ? "block" : "none"}
         >
@@ -182,7 +225,7 @@ function App() {
           backClickFunction={handlePrevClick}
           backButtonDisplay={index > 1 ? "block" : "none"}
         />
-      </MainContainer>
+      </FormContainer>
     </>
   )
 }

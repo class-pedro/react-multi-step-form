@@ -54,28 +54,28 @@ const ExtraServicePrice = styled.span`
     color: ${prop => prop.color || "hsl(213, 96%, 18%)"}; 
 `
 
-function FinishPlan({planName, planRecurrence, planPrice, extraName, extraPrice, totalPrice}) {
+function FinishPlan({planName, planRecurrence, planPrice, extraName, extraPrice, monthOrYear, totalPrice, planAbreviation}) {
     return (
         <>
             <ChangePlanContainer>
                 <div>
                     <PlanName>
-                        Arcade (Monthly)
+                        {planName} ({planRecurrence})
                     </PlanName>
                     <ChangePlanBtn>
                         Change
                     </ChangePlanBtn>
                 </div>
                 <FinishingPrice>
-                    $9/mo
+                    ${planPrice}/{planAbreviation}
                 </FinishingPrice>
             </ChangePlanContainer>
             <RowContainer>
                 <ExtraParagraph>
-                    Online Service
+                    {extraName}
                 </ExtraParagraph>
                 <ExtraServicePrice>
-                    +1$/mo
+                    +{extraPrice}$/{planAbreviation}
                 </ExtraServicePrice>
             </RowContainer>
             <RowContainer>
@@ -99,13 +99,13 @@ function FinishPlan({planName, planRecurrence, planPrice, extraName, extraPrice,
                 margin="50px 10px 0px 10px"
             >
                 <ExtraParagraph>
-                    Total (per month)
+                    Total (per {monthOrYear})
                 </ExtraParagraph>
                 <ExtraServicePrice
                     font_size="1.25em"
                     color="hsl(243, 100%, 62%)"
                     weight="700">
-                    +14$/mo
+                    +{totalPrice}$/{planAbreviation}
                 </ExtraServicePrice>
             </RowContainer>
         </>
