@@ -19,7 +19,10 @@ import advancedImg from "./assets/images/icon-advanced.svg";
 import proImg from "./assets/images/icon-pro.svg";
 import thankYouImage from "./assets/images/icon-thank-you.svg";
 import { Children, useState } from "react";
-import PurpleCheckbox from "./components/AddOns/PurpleCheckbox";
+
+import FinishPlan from "./components/FinishingUp/FinishPlan";
+
+
 
 const MainContainer = styled.form`
     display: flex;
@@ -143,6 +146,8 @@ function App() {
         >
           <Title>Finishing up</Title>
           <Paragraph>Double-check everything looks OK before confirming.</Paragraph>
+
+          <FinishPlan />
         </StepContainer>
 
         {/* Step 5 */}
