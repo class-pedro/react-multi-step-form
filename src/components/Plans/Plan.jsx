@@ -60,20 +60,3 @@ function Plan({imageSrc, planName, price, displayEconomy}) {
 }
 
 export default Plan
-
-
-{/* <li class="plan arcade">
-
-<img src="assets/images/icon-arcade.svg" alt="Arcade icon" class="plan_icon">
-
-<div class="plan_txt">
-
-  <p class="plan_name">Arcade</p>
-  <p class="plan_month">$9/mo</p>
-
-  <div class="container_year_plan">
-    <p class="plan_year">$90/yr</p>
-    <span class="plan_economy">2 months free</span>
-  </div>
-</div>
-</li> */}

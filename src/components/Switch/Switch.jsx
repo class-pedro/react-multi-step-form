@@ -83,12 +83,3 @@ function Switch({switchFunction}) {
 }
 
 export default Switch
-
-{/* <section class="switch__container">
-    <span class="switch_txt switch_txt_mo">Monthly</span>
-    <label for="toggleSwitch" class="switch">
-        <input type="checkbox" id="toggleSwitch">
-            <span class="slider round"></span>
-    </label>
-    <span class="switch_txt switch_txt_yr">Yearly</span>
-</section> */}

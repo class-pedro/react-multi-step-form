@@ -6,7 +6,6 @@ const Fieldset = styled.fieldset`
     width: 100%;
     margin: 0 0 15px 0;
 `
-
 const Label = styled.label`
     display: block;
     color: hsl(213, 96%, 18%);
