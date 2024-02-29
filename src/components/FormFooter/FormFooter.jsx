@@ -10,6 +10,12 @@ const FooterContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
+
+    @media (min-width: 1024px) {
+        position: relative;
+        background-color: white;
+        width: 100%;
+    }
 `
 
 const FooterNextButton = styled.button`
@@ -24,6 +30,7 @@ const FooterNextButton = styled.button`
     margin-right: 15px;
 
     @media (min-width: 1024px) {
+        margin-right: 0;
         &:hover {
             background-color: hsl(243, 100%, 62%);
             box-shadow: 0 0 30px hsla(243, 100%, 62%, 0.288);

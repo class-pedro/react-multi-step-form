@@ -22,6 +22,17 @@ export const StepContainer = styled.div`
         text-align: center;
         margin-top: 80px;
     }
+
+    @media (min-width: 1024px) {
+        background-color: white;
+        width: 100%;
+        min-width: 350px;
+        border-radius: 0;
+        padding: 0;
+        margin-top: 50px;
+        position: relative;
+        top: 0;
+    }
 `
 // function StepContainer() {
 

@@ -1,6 +1,41 @@
 import styled from "styled-components"
 
-const NumBtnContainer = styled.button`
+const NumBtnContainer = styled.div`
+    display: block;
+
+    @media (min-width: 1024px) {
+        display: flex;
+        align-items: center;
+    }
+`
+
+const NumBtnText = styled.div`
+    display: none;
+
+    @media (min-width: 1024px) {
+        display: block;
+
+        & span, p {
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
+            margin: 0 0 0 20px;
+        }
+
+        & span {
+            font-size: .8em;
+            color: hsl(228, 100%, 84%);
+        }
+
+        & p {
+            color: white;
+            font-size: 1em;
+            font-weight: 700;
+        }
+    }
+`
+
+const NumBtn = styled.button`
     width: 35px;
     height: 35px;
     background-color: ${prop => prop.bg_color || "#cccccc1c"};
@@ -17,14 +52,20 @@ const NumBtnContainer = styled.button`
     }
 `
 
-function NumberBtn({ children, bg_color, color, onClickFunction }) {
+function NumberBtn({ children, bg_color, color, stepName, onClickFunction }) {
     return (
-        <NumBtnContainer
-            bg_color={bg_color}
-            color={color}
-            onClick={onClickFunction}
-        >
-            {children}
+        <NumBtnContainer>
+            <NumBtn
+                bg_color={bg_color}
+                color={color}
+                onClick={onClickFunction}
+            >
+                {children}
+            </NumBtn>
+            <NumBtnText>
+                <span>step {children}</span>
+                <p>{stepName}</p>
+            </NumBtnText>
         </NumBtnContainer>
     )
 }

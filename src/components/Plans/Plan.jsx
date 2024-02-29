@@ -29,6 +29,15 @@ const PlanContainer = styled.li`
     }
 
     @media (min-width: 1024px) {
+        width: 130px;
+        height: 150px;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & img {
+            max-width: 50px;
+        }
+
         &:hover {
             cursor: pointer;
             border: 1px solid hsl(231, 11%, 63%);
