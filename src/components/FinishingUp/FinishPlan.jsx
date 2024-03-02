@@ -58,7 +58,7 @@ const ExtraServicePrice = styled.span`
     color: ${prop => prop.color || "hsl(213, 96%, 18%)"}; 
 `
 
-function FinishPlan({planName, planRecurrence, planPrice, extraName, extraPrice, monthOrYear, totalPrice, planAbreviation}) {
+function FinishPlan({planName, planRecurrence, onclick, planPrice, extraName, extraPrice, monthOrYear, totalPrice, planAbreviation}) {
     return (
         <>
             <ChangePlanContainer>
@@ -66,7 +66,7 @@ function FinishPlan({planName, planRecurrence, planPrice, extraName, extraPrice,
                     <PlanName>
                         {planName} ({planRecurrence})
                     </PlanName>
-                    <ChangePlanBtn>
+                    <ChangePlanBtn onClick={onclick}>
                         Change
                     </ChangePlanBtn>
                 </div>

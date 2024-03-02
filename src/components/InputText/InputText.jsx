@@ -16,7 +16,7 @@ const Input = styled.input`
     height: 40px;
     border-radius: 5px;
     box-sizing: border-box;
-    border: 1px solid ${prop => prop.borderColor || "hsl(229, 24%, 87%)"};
+    border: 1px solid ${prop => prop.bordercolor || "hsl(229, 24%, 87%)"};
     margin: 0 0 1px 0;
     padding: 0 15px;
     outline: none;
@@ -29,7 +29,7 @@ const Input = styled.input`
     }
 
     &:focus {
-        outline: 1px solid ${prop => prop.outlineColor || "hsl(213, 96%, 18%)"};
+        outline: 1px solid ${prop => prop.outlinecolor || "hsl(213, 96%, 18%)"};
     }
 `
 const SpanErrorMsg = styled.span`
@@ -38,7 +38,7 @@ const SpanErrorMsg = styled.span`
     color: hsl(354, 84%, 57%);
 `
 
-function NumberBtn({ labelFor, labelText, inputType, inputIid, inputPlaceholder, borderColor, outlineColor, errorMsg, onChange, onClick }) {
+function NumberBtn({ labelFor, labelText, inputType, inputIid, inputPlaceholder, bordercolor, outlinecolor, errorMsg, onchange, onclick }) {
 
     return (
         <Fieldset>
@@ -50,10 +50,10 @@ function NumberBtn({ labelFor, labelText, inputType, inputIid, inputPlaceholder,
                 type={inputType}
                 id={inputIid}
                 placeholder={inputPlaceholder}
-                borderColor={borderColor}
-                outlineColor={outlineColor}
-                onChange={onChange}
-                onClick={onClick}
+                bordercolor={bordercolor}
+                outlinecolor={outlinecolor}
+                onChange={onchange}
+                onClick={onclick}
             />
             <SpanErrorMsg>{errorMsg}</SpanErrorMsg>
         </Fieldset>

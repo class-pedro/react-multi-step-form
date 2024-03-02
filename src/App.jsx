@@ -1,25 +1,19 @@
 import styled from "styled-components";
 import { HeaderContainer } from "./components/Header/Header";
-
 import { StepContainer } from "./components/StepContainer/StepContainer";
 import { Title } from "./components/Title/Title";
 import { Paragraph } from "./components/Paragraph/Paragraph";
 import InputText from "./components/InputText/InputText";
-
 import { PlansContainer } from "./components/Plans/PlansContainer";
 import Plan from "./components/Plans/Plan";
 import Switch from "./components/Switch/Switch";
-
 import AddOns from "./components/AddOns/AddOns";
-
 import FormFooter from "./components/FormFooter/FormFooter";
-
 import arcadeImg from "./assets/images/icon-arcade.svg";
 import advancedImg from "./assets/images/icon-advanced.svg";
 import proImg from "./assets/images/icon-pro.svg";
 import thankYouImage from "./assets/images/icon-thank-you.svg";
-import { Children, useState } from "react";
-
+import { Children, useState } from "react"
 import FinishPlan from "./components/FinishingUp/FinishPlan";
 import NumberBtn from "./components/NumberBtn/NumberBtn";
 import { NumberContainer } from "./components/NumberBtn/NumberContainer";
@@ -69,29 +63,63 @@ const FormContainer = styled.form`
 
 function App() {
 
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(4);
   const [yearlyPlan, setYearlyPlan] = useState(false);
+  const [cart, setCart] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    yearly: false,
+    plan: "",
+    planPrice: 0,
+    addOns: {
+      onlineService: false,
+      largerStorage: false,
+      customizableProfile: false
+    }
+
+  });
+  // Step 1 States
   const [name, setName] = useState('');
-  const [emptyCamp, setEmptyCamp] = useState(null);
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [emptyName, setEmptyName] = useState(false);
+  const [emptyEmail, setEmptyEmail] = useState(false);
+  const [emptyPhoneNumber, setEmptyPhoneNumber] = useState(false);
+  // ###################################################
+  // Step 2 States
+
+  function validEmail(email) {
+    const emailRegex = new RegExp(
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}/
+    );
+
+    if (emailRegex.test(email)) {
+      return true;
+    }
+
+    return false;
+  }
+
 
   function handleNextClick(e) {
 
-    e.preventDefault()
+    e.preventDefault();
 
-    if (name === "") {
+    if (name == "") {
+      setEmptyName(true);
+    }
 
-      setIndex(index);
-      setEmptyCamp(true);
+    if (email == "" || !validEmail(email)) {
+      setEmptyEmail(true);
+    }
 
-    } else {
+    if (phoneNumber == "") {
+      setEmptyPhoneNumber(true);
+    }
 
-      setEmptyCamp(false);
-
-      if (index < 5) {
-        
-        setIndex(index + 1);
-        
-      }
+    if (name && email && phoneNumber !== "" && validEmail(email)) {
+      setIndex(index + 1);
     }
   }
 
@@ -159,13 +187,13 @@ function App() {
               inputType='text'
               inputIid='name'
               inputPlaceholder='e.g. Stephen King'
-              borderColor={emptyCamp === true ? "hsl(354, 84%, 57%)" : ""}
-              outlineColor={emptyCamp === true ? "hsl(354, 84%, 57%)" : ""}
-              errorMsg={emptyCamp === true ? "Enter a name" : ""}
-              onChange={(event) => {
+              bordercolor={emptyName === true ? "hsl(354, 84%, 57%)" : ""}
+              outlinecolor={emptyName === true ? "hsl(354, 84%, 57%)" : ""}
+              errorMsg={emptyName === true ? "Enter a name." : ""}
+              onchange={(event) => {
                 setName(event.target.value);
               }}
-              onClick={() => setEmptyCamp(false)}
+              onclick={() => setEmptyName(false)}
             />
             <InputText
               labelFor='email'
@@ -173,6 +201,11 @@ function App() {
               inputType='email'
               inputIid='email'
               inputPlaceholder='e.g. stephenking@lorem.com'
+              bordercolor={emptyEmail === true ? "hsl(354, 84%, 57%)" : ""}
+              outlinecolor={emptyEmail === true ? "hsl(354, 84%, 57%)" : ""}
+              errorMsg={emptyEmail === true ? "Enter a valid email." : ""}
+              onchange={(event) => { setEmail(event.target.value) }}
+              onclick={() => setEmptyEmail(false)}
             />
             <InputText
               labelFor='phone'
@@ -180,6 +213,11 @@ function App() {
               inputType='tel'
               inputIid='phone'
               inputPlaceholder='e.g. +1 234 567 890'
+              bordercolor={emptyPhoneNumber === true ? "hsl(354, 84%, 57%)" : ""}
+              outlinecolor={emptyPhoneNumber === true ? "hsl(354, 84%, 57%)" : ""}
+              errorMsg={emptyPhoneNumber === true ? "Enter valid phone number." : ""}
+              onchange={(event) => { setPhoneNumber(event.target.value) }}
+              onclick={() => setEmptyPhoneNumber(false)}
             />
           </StepContainer>
 
@@ -242,13 +280,17 @@ function App() {
             <Paragraph>Double-check everything looks OK before confirming.</Paragraph>
 
             <FinishPlan planName="Arcade"
-              planRecurrence="Monthly"
+              planRecurrence={cart.yearly == true ? "Yearly" : "Monthly"}
+              onclick={(e) => {
+                e.preventDefault();
+                console.log(cart.addOns.customizableProfile)
+              }}
               planPrice="9"
               extraName="Online Service"
               extraPrice="1"
-              monthOrYear="month"
+              monthOrYear={cart.yearly == true ? "year" : "month"}
               totalPrice="14"
-              planAbreviation="mo"
+              planAbreviation={cart.yearly == true ? "yr" : "mo"}
             />
           </StepContainer>
 
