@@ -26,6 +26,10 @@ const ChangePlanBtn = styled.button`
     border: none;
     background-color: transparent;
     padding: 0;
+
+    @media (min-width: 1024px) {
+        cursor: pointer;
+    }
 `
 
 const FinishingPrice = styled.span`

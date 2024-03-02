@@ -8,8 +8,9 @@ export const PlansContainer = styled.ul`
     width: 100%;
     gap: 20px;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
         flex-direction: row;
+        justify-content: space-between;
         margin: 40px 0 40px 0;
     }
 `

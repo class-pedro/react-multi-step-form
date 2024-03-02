@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header`
     justify-content: center;
 
     /* Responsiveness */
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
         background: url(${desktopHeaderBg}) no-repeat center center;
         background-size: cover;
         width: 100%;

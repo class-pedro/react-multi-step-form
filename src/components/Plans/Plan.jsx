@@ -7,11 +7,11 @@ const PlanContainer = styled.li`
     padding: 15px;
 
     & img {
-        margin-right: 20px;
+        margin: 0 20px 10px 0 ;
     }
 
     & h2 {
-        font-size: 1.25em;
+        font-size: 1em;
         margin: 0 0 5px 0;
         font-weight: 700;
         color: hsl(213, 96%, 18%);
@@ -29,27 +29,29 @@ const PlanContainer = styled.li`
     }
 
     @media (min-width: 1024px) {
-        width: 130px;
-        height: 150px;
+        &:hover {
+            cursor: pointer;
+            border: 1px solid hsl(231, 11%, 63%);
+        }
+    }
+
+    @media (min-width: 1200px) {
+        width: 8rem;
+        height: 9rem;
         flex-direction: column;
         justify-content: space-between;
 
         & img {
             max-width: 50px;
         }
-
-        &:hover {
-            cursor: pointer;
-            border: 1px solid hsl(231, 11%, 63%);
-        }
     }
 `
 
-function Plan({imageSrc, planName, price, displayEconomy}) {
+function Plan({ imageSrc, planName, price, displayEconomy }) {
 
     return (
         <PlanContainer display={displayEconomy}>
-            <img src={imageSrc}/>
+            <img src={imageSrc} />
             <section>
                 <h2>{planName}</h2>
                 <p>{price}</p>

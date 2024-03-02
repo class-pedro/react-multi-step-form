@@ -20,7 +20,7 @@ export const StepContainer = styled.div`
         margin-top: 80px;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
         background-color: white;
         width: 100%;
         min-width: 350px;

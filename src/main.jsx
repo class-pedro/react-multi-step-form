@@ -23,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
   li {
     list-style: none;
   }
+
+  p::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection, span::selection, label::selection, button::selection {
+    background-color: hsl(243, 100%, 62%);
+    color: white;
+}
 `
 
 ReactDOM.createRoot(document.getElementById('root')).render(

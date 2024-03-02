@@ -3,7 +3,7 @@ import styled from "styled-components"
 const NumBtnContainer = styled.div`
     display: block;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
         display: flex;
         align-items: center;
     }
@@ -12,7 +12,7 @@ const NumBtnContainer = styled.div`
 const NumBtnText = styled.div`
     display: none;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
         display: block;
 
         & span, p {

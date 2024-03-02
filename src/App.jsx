@@ -25,7 +25,7 @@ import NumberBtn from "./components/NumberBtn/NumberBtn";
 import { NumberContainer } from "./components/NumberBtn/NumberContainer";
 
 const FlexContainer = styled.div`
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -34,8 +34,8 @@ const FlexContainer = styled.div`
 `
 
 const MainContainer = styled.main`
-  @media (min-width: 1024px) {
-    width: 55vw;
+  @media (min-width: 1200px) {
+    width: 50vw;
     height: 70vh;
     background-color: white;
     display: flex;
@@ -58,8 +58,9 @@ const FormContainer = styled.form`
       justify-content: space-between;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
       width: 100%;
+      min-width: 350px;
       height: 100%;
       padding: 0 50px;
       justify-content: space-between;
@@ -70,13 +71,27 @@ function App() {
 
   const [index, setIndex] = useState(1);
   const [yearlyPlan, setYearlyPlan] = useState(false);
+  const [name, setName] = useState('');
+  const [emptyCamp, setEmptyCamp] = useState(null);
 
   function handleNextClick(e) {
 
     e.preventDefault()
 
-    if (index < 5) {
-      setIndex(index + 1);
+    if (name === "") {
+
+      setIndex(index);
+      setEmptyCamp(true);
+
+    } else {
+
+      setEmptyCamp(false);
+
+      if (index < 5) {
+        
+        setIndex(index + 1);
+        
+      }
     }
   }
 
@@ -144,6 +159,13 @@ function App() {
               inputType='text'
               inputIid='name'
               inputPlaceholder='e.g. Stephen King'
+              borderColor={emptyCamp === true ? "hsl(354, 84%, 57%)" : ""}
+              outlineColor={emptyCamp === true ? "hsl(354, 84%, 57%)" : ""}
+              errorMsg={emptyCamp === true ? "Enter a name" : ""}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+              onClick={() => setEmptyCamp(false)}
             />
             <InputText
               labelFor='email'

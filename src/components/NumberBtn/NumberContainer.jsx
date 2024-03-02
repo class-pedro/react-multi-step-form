@@ -8,7 +8,7 @@ export const NumberContainer = styled.div`
     gap: 12px;
     margin: 35px 0 0 0;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1200px) {
         height: 100%;
         width: 100%;
         flex-direction: column;
