@@ -66,7 +66,7 @@ function App() {
   const [index, setIndex] = useState(1);
   const [yearlyPlan, setYearlyPlan] = useState(false);
   const [cart, setCart] = useState({
-    name: "",
+    userName: "",
     email: "",
     phone: "",
     yearly: false,
@@ -121,7 +121,7 @@ function App() {
     if (name && email && phoneNumber !== "" && validEmail(email)) {
       setIndex(index + 1);
       setCart(
-        cart.name = name,
+        cart.userName = name,
         cart.email = email,
         cart.phone = phoneNumber
         )

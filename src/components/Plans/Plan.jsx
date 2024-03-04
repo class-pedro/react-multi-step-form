@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const PlanContainer = styled.li`
+const PlanContainer = styled.div`
     display: flex;
     border: 1px solid hsl(229, 24%, 87%);
     border-radius: 10px;
@@ -47,12 +47,11 @@ const PlanContainer = styled.li`
     }
 `
 
-function Plan({ imageSrc, planName, price, displayEconomy, onclick }) {
+function Plan({ imageSrc, planName, price, displayEconomy, clickfunction }) {
 
     return (
         <PlanContainer
             display={displayEconomy}
-            onClick={onclick}
         >
             <img src={imageSrc} />
             <section>
