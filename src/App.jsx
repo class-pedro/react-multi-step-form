@@ -63,7 +63,7 @@ const FormContainer = styled.form`
 
 function App() {
 
-  const [index, setIndex] = useState(4);
+  const [index, setIndex] = useState(1);
   const [yearlyPlan, setYearlyPlan] = useState(false);
   const [cart, setCart] = useState({
     name: "",
@@ -120,6 +120,12 @@ function App() {
 
     if (name && email && phoneNumber !== "" && validEmail(email)) {
       setIndex(index + 1);
+      setCart(
+        cart.name = name,
+        cart.email = email,
+        cart.phone = phoneNumber
+        )
+      console.log(cart)
     }
   }
 

@@ -47,10 +47,13 @@ const PlanContainer = styled.li`
     }
 `
 
-function Plan({ imageSrc, planName, price, displayEconomy }) {
+function Plan({ imageSrc, planName, price, displayEconomy, onclick }) {
 
     return (
-        <PlanContainer display={displayEconomy}>
+        <PlanContainer
+            display={displayEconomy}
+            onClick={onclick}
+        >
             <img src={imageSrc} />
             <section>
                 <h2>{planName}</h2>
