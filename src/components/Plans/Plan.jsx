@@ -1,10 +1,11 @@
 import styled from "styled-components"
 
-const PlanContainer = styled.div`
+const PlanContainer = styled.li`
     display: flex;
-    border: 1px solid hsl(229, 24%, 87%);
+    border: 1px solid ${props => props.bordercolor || 'hsl(229, 24%, 87%)'};
     border-radius: 10px;
     padding: 15px;
+    background-color: ${props => props.bgcolor};
 
     & img {
         margin: 0 20px 10px 0 ;
@@ -47,11 +48,14 @@ const PlanContainer = styled.div`
     }
 `
 
-function Plan({ imageSrc, planName, price, displayEconomy, clickfunction }) {
+function Plan({ imageSrc, planName, price, displayEconomy, clickfunction, bordercolor, bgcolor }) {
 
     return (
         <PlanContainer
             display={displayEconomy}
+            onClick={clickfunction}
+            bordercolor={bordercolor}
+            bgcolor={bgcolor}
         >
             <img src={imageSrc} />
             <section>

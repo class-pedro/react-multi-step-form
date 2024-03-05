@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import ExtraService from "./ExtraService"
 
 
 const ChangePlanContainer = styled.div`
@@ -37,28 +38,7 @@ const FinishingPrice = styled.span`
     color: hsl(213, 96%, 18%);
 `
 
-const RowContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin: ${prop => prop.margin || "10px 10px"};
-`
-
-const ExtraParagraph = styled.h4`
-    font-size: 1em;
-    font-weight: 400;
-    color: hsl(231, 11%, 63%);
-    margin: 0;
-`
-
-const ExtraServicePrice = styled.span`
-    font-size: ${prop => prop.font_size || "1em"};
-    font-weight: ${prop => prop.weight || "500"}; 
-    color: ${prop => prop.color || "hsl(213, 96%, 18%)"}; 
-`
-
-function FinishPlan({planName, planRecurrence, onclick, planPrice, extraName, extraPrice, monthOrYear, totalPrice, planAbreviation}) {
+function FinishPlan({ planName, planRecurrence, onclick, planPrice, monthOrYear, totalPrice, planAbreviation }) {
     return (
         <>
             <ChangePlanContainer>
@@ -74,32 +54,7 @@ function FinishPlan({planName, planRecurrence, onclick, planPrice, extraName, ex
                     ${planPrice}/{planAbreviation}
                 </FinishingPrice>
             </ChangePlanContainer>
-            <RowContainer>
-                <ExtraParagraph>
-                    {extraName}
-                </ExtraParagraph>
-                <ExtraServicePrice>
-                    +{extraPrice}$/{planAbreviation}
-                </ExtraServicePrice>
-            </RowContainer>
-            <RowContainer>
-                <ExtraParagraph>
-                    Larger Storage
-                </ExtraParagraph>
-                <ExtraServicePrice>
-                    +2$/mo
-                </ExtraServicePrice>
-            </RowContainer>
-            <RowContainer>
-                <ExtraParagraph>
-                    Customizable Profile
-                </ExtraParagraph>
-                <ExtraServicePrice>
-                    +2$/mo
-                </ExtraServicePrice>
-            </RowContainer>
-
-            <RowContainer
+            {/* <RowContainer
                 margin="50px 10px 0px 10px"
             >
                 <ExtraParagraph>
@@ -111,7 +66,7 @@ function FinishPlan({planName, planRecurrence, onclick, planPrice, extraName, ex
                     weight="700">
                     +{totalPrice}$/{planAbreviation}
                 </ExtraServicePrice>
-            </RowContainer>
+            </RowContainer> */}
         </>
     )
 }

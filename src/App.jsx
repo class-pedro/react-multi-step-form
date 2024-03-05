@@ -17,6 +17,7 @@ import { Children, useState } from "react"
 import FinishPlan from "./components/FinishingUp/FinishPlan";
 import NumberBtn from "./components/NumberBtn/NumberBtn";
 import { NumberContainer } from "./components/NumberBtn/NumberContainer";
+import ExtraService from "./components/FinishingUp/ExtraService";
 
 const FlexContainer = styled.div`
   @media (min-width: 1200px) {
@@ -63,22 +64,9 @@ const FormContainer = styled.form`
 
 function App() {
 
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(4);
   const [yearlyPlan, setYearlyPlan] = useState(false);
-  const [cart, setCart] = useState({
-    userName: "",
-    email: "",
-    phone: "",
-    yearly: false,
-    plan: "",
-    planPrice: 0,
-    addOns: {
-      onlineService: false,
-      largerStorage: false,
-      customizableProfile: false
-    }
-
-  });
+  const [cart, setCart] = useState([]);
   // Step 1 States
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -88,6 +76,17 @@ function App() {
   const [emptyPhoneNumber, setEmptyPhoneNumber] = useState(false);
   // ###################################################
   // Step 2 States
+  const [plan, setPlan] = useState('');
+  const [planPrice, setPlanPrice] = useState(0);
+  // ###################################################
+  // Step 3 States
+  const [addOnlineService, setAddOnlineService] = useState(false);
+  const [addLargerStorage, setAddLargerStorage] = useState(false);
+  const [addCustomProfile, setAddCustomProfile] = useState(false);
+  const [onlineServicePrice, setOnlineServicePrice] = useState(1);
+  const [largerStoragePrice, setLargerStoragePrice] = useState(2);
+  const [customProfilePrice, setCustomProfilePrice] = useState(2);
+
 
   function validEmail(email) {
     const emailRegex = new RegExp(
@@ -100,7 +99,6 @@ function App() {
 
     return false;
   }
-
 
   function handleNextClick(e) {
 
@@ -120,12 +118,6 @@ function App() {
 
     if (name && email && phoneNumber !== "" && validEmail(email)) {
       setIndex(index + 1);
-      setCart(
-        cart.userName = name,
-        cart.email = email,
-        cart.phone = phoneNumber
-        )
-      console.log(cart)
     }
   }
 
@@ -134,12 +126,21 @@ function App() {
     setIndex(index - 1)
   }
 
-  function handleSelectPlan() {
+  function handleChangeYearly() {
     setYearlyPlan(!yearlyPlan);
   }
 
-  function handleNextClickBtn(index) {
+  function handleNumberClickBtn(index) {
     setIndex(index);
+  }
+
+  function selectPlan(planName, PlanPriceNumber) {
+    setPlan(planName);
+    setPlanPrice(Number(PlanPriceNumber));
+  }
+
+  const toggleExtraService = (setState, state) => {
+    return setState(!state)
   }
 
   return (
@@ -152,7 +153,7 @@ function App() {
               bg_color={index == 1 ? "hsl(206, 94%, 87%)" : "transparent"}
               color={index == 1 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"}
               stepName="your info"
-              onClickFunction={() => handleNextClickBtn(1)}
+              onClickFunction={() => handleNumberClickBtn(1)}
             />
             <NumberBtn
               children='2'
@@ -160,21 +161,21 @@ function App() {
               color={index == 2 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"
               }
               stepName="select plan"
-              onClickFunction={() => handleNextClickBtn(2)}
+              onClickFunction={() => handleNumberClickBtn(2)}
             />
             <NumberBtn
               children='3'
               bg_color={index == 3 ? "hsl(206, 94%, 87%)" : "transparent"}
               color={index == 3 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"}
               stepName="add-ons"
-              onClickFunction={() => handleNextClickBtn(3)}
+              onClickFunction={() => handleNumberClickBtn(3)}
             />
             <NumberBtn
               children='4'
               bg_color={index == 4 ? "hsl(206, 94%, 87%)" : "transparent"}
               color={index == 4 ? "hsl(213, 96%, 18%)" : "hsl(206, 94%, 87%)"}
               stepName="summary"
-              onClickFunction={() => handleNextClickBtn(4)}
+              onClickFunction={() => handleNumberClickBtn(4)}
             />
           </NumberContainer>
         </HeaderContainer>
@@ -239,22 +240,34 @@ function App() {
                 planName="Arcade"
                 price={yearlyPlan == false ? "$9/mo" : "$90/yr"}
                 displayEconomy={yearlyPlan == false ? "none" : "block"}
+                clickfunction={() => selectPlan('arcade', 9)}
+                bordercolor={plan == 'arcade' ? 'hsl(243, 100%, 62%)' : ''}
+                bgcolor={plan == 'arcade' ? 'hsl(217, 100%, 97%)' : ''}
               />
               <Plan
                 imageSrc={advancedImg}
                 planName="Advanced"
                 price={yearlyPlan == false ? "$12/mo" : "$120/yr"}
                 displayEconomy={yearlyPlan == false ? "none" : "block"}
+                clickfunction={() => selectPlan('advanced', 12)}
+                bordercolor={plan == 'advanced' ? 'hsl(243, 100%, 62%)' : ''}
+                bgcolor={plan == 'advanced' ? 'hsl(217, 100%, 97%)' : ''}
               />
               <Plan
                 imageSrc={proImg}
                 planName="Pro"
                 price={yearlyPlan == false ? "$15/mo" : "$150/yr"}
                 displayEconomy={yearlyPlan == false ? "none" : "block"}
+                clickfunction={() => selectPlan('pro', 15)}
+                bordercolor={plan == 'pro' ? 'hsl(243, 100%, 62%)' : ''}
+                bgcolor={plan == 'pro' ? 'hsl(217, 100%, 97%)' : ''}
               />
             </PlansContainer>
-            <Switch switchFunction={handleSelectPlan} />
+            <Switch switchFunction={handleChangeYearly} />
           </StepContainer>
+
+          {/* bordercolor={addLargerStorage == true ? 'hsl(243, 100%, 62%)' : ''}
+          bgcolor={addLargerStorage == true ? 'hsl(217, 100%, 97%)' : ''} */}
 
           {/* Step 3 */}
           <StepContainer
@@ -264,17 +277,28 @@ function App() {
             <Paragraph>Add-ons help enhance your gaming experience.</Paragraph>
 
             <AddOns
-              serviceName="Online service" serviceDescription="Access to multiplayer games"
+              serviceName="Online service"
+              serviceDescription="Access to multiplayer games"
               servicePrice={yearlyPlan == false ? "1/mo" : "10/yr"}
+              checkboxclick={() => toggleExtraService(setAddOnlineService, addOnlineService)}
+              bordercolor={addOnlineService == true ? 'hsl(243, 100%, 62%)' : ''}
+              bgcolor={addOnlineService == true ? 'hsl(217, 100%, 97%)' : ''}
             />
             <AddOns
-              serviceName="Larger storage" serviceDescription="Extra 1TB of cloud save"
+              serviceName="Larger storage"
+              serviceDescription="Extra 1TB of cloud save"
               servicePrice={yearlyPlan == false ? "2/mo" : "20/yr"}
+              checkboxclick={() => toggleExtraService(setAddLargerStorage, addLargerStorage)}
+              bordercolor={addLargerStorage == true ? 'hsl(243, 100%, 62%)' : ''}
+              bgcolor={addLargerStorage == true ? 'hsl(217, 100%, 97%)' : ''}
             />
             <AddOns
               serviceName="Customizable Profile"
               serviceDescription="Custom theme on your profile"
               servicePrice={yearlyPlan == false ? "2/mo" : "20/yr"}
+              checkboxclick={() => toggleExtraService(setAddCustomProfile, addCustomProfile)}
+              bordercolor={addCustomProfile == true ? 'hsl(243, 100%, 62%)' : ''}
+              bgcolor={addCustomProfile == true ? 'hsl(217, 100%, 97%)' : ''}
             />
           </StepContainer>
 
@@ -285,18 +309,34 @@ function App() {
             <Title>Finishing up</Title>
             <Paragraph>Double-check everything looks OK before confirming.</Paragraph>
 
-            <FinishPlan planName="Arcade"
-              planRecurrence={cart.yearly == true ? "Yearly" : "Monthly"}
+            <FinishPlan
+              planName={plan}
+              planRecurrence={yearlyPlan == true ? "Yearly" : "Monthly"}
               onclick={(e) => {
                 e.preventDefault();
-                console.log(cart.addOns.customizableProfile)
               }}
-              planPrice="9"
-              extraName="Online Service"
-              extraPrice="1"
-              monthOrYear={cart.yearly == true ? "year" : "month"}
+              planPrice={yearlyPlan == true ? planPrice * 10 : planPrice}
+              monthOrYear={yearlyPlan == true ? "year" : "month"}
               totalPrice="14"
-              planAbreviation={cart.yearly == true ? "yr" : "mo"}
+              planAbreviation={yearlyPlan == true ? "yr" : "mo"}
+            />
+            <ExtraService
+              display={addOnlineService == false ? "flex" : "none"}
+              extraName="Online Service"
+              extraPrice={yearlyPlan == true ? onlineServicePrice * 10 : onlineServicePrice}
+              planAbreviation={yearlyPlan == true ? "yr" : "mo"}
+            />
+            <ExtraService
+              display={addLargerStorage == false ? "flex" : "none"}
+              extraName="Larger Storage"
+              extraPrice={yearlyPlan == true ? largerStoragePrice * 10 : largerStoragePrice}
+              planAbreviation={yearlyPlan == true ? "yr" : "mo"}
+            />
+            <ExtraService
+              display={addCustomProfile == false ? "flex" : "none"}
+              extraName="Customizable Profile"
+              extraPrice={yearlyPlan == true ? customProfilePrice * 10 : customProfilePrice}
+              planAbreviation={yearlyPlan == true ? "yr" : "mo"}
             />
           </StepContainer>
 
