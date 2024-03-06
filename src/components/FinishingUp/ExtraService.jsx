@@ -13,20 +13,23 @@ const ExtraParagraph = styled.h4`
     color: hsl(231, 11%, 63%);
     margin: 0;
 `
-
 const ExtraServicePrice = styled.span`
-    font-size: ${prop => prop.font_size || "1em"};
+    font-size: ${prop => prop.fontSize || "1em"};
     font-weight: ${prop => prop.weight || "500"}; 
     color: ${prop => prop.color || "hsl(213, 96%, 18%)"}; 
 `
 
-function ExtraService({margin, display, extraName, extraPrice, planAbreviation}) {
+function ExtraService({margin, display, extraName, extraPrice, planAbreviation, fontSize, weight, color}) {
     return (
         <RowContainer display={display} margin={margin}>
             <ExtraParagraph>
                 {extraName}
             </ExtraParagraph>
-            <ExtraServicePrice>
+            <ExtraServicePrice 
+                fontSize={fontSize}
+                weight={weight}
+                color={color}
+            >
                 +{extraPrice}$/{planAbreviation}
             </ExtraServicePrice>
         </RowContainer>

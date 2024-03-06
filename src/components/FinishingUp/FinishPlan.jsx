@@ -38,7 +38,7 @@ const FinishingPrice = styled.span`
     color: hsl(213, 96%, 18%);
 `
 
-function FinishPlan({ planName, planRecurrence, onclick, planPrice, monthOrYear, totalPrice, planAbreviation }) {
+function FinishPlan({ planName, planRecurrence, onclick, planPrice, planAbreviation }) {
     return (
         <>
             <ChangePlanContainer>

@@ -64,7 +64,7 @@ const FormContainer = styled.form`
 
 function App() {
 
-  const [index, setIndex] = useState(4);
+  const [index, setIndex] = useState(1);
   const [yearlyPlan, setYearlyPlan] = useState(false);
   const [cart, setCart] = useState([]);
   // Step 1 States
@@ -86,6 +86,9 @@ function App() {
   const [onlineServicePrice, setOnlineServicePrice] = useState(1);
   const [largerStoragePrice, setLargerStoragePrice] = useState(2);
   const [customProfilePrice, setCustomProfilePrice] = useState(2);
+  // ###################################################
+  // Step 4 States
+  const [totalPrice, setTotalPrice] = useState(0);
 
 
   function validEmail(email) {
@@ -141,6 +144,25 @@ function App() {
 
   const toggleExtraService = (setState, state) => {
     return setState(!state)
+  }
+
+  function CalcTotalPrice() {
+
+    const calcPrice = 0
+
+    if (yearlyPlan == true) {
+      calcPrice =
+        (planPrice * 10) +
+        (onlineServicePrice * 10) +
+        (largerStoragePrice * 10) +
+        (customProfilePrice * 10)
+    } else {
+      calcPrice =
+        planPrice +
+        onlineServicePrice +
+        largerStoragePrice +
+        customProfilePrice
+    }
   }
 
   return (
@@ -317,25 +339,35 @@ function App() {
               }}
               planPrice={yearlyPlan == true ? planPrice * 10 : planPrice}
               monthOrYear={yearlyPlan == true ? "year" : "month"}
-              totalPrice="14"
               planAbreviation={yearlyPlan == true ? "yr" : "mo"}
             />
             <ExtraService
-              display={addOnlineService == false ? "flex" : "none"}
+              display={addOnlineService == true ? "flex" : "none"}
               extraName="Online Service"
               extraPrice={yearlyPlan == true ? onlineServicePrice * 10 : onlineServicePrice}
               planAbreviation={yearlyPlan == true ? "yr" : "mo"}
             />
             <ExtraService
-              display={addLargerStorage == false ? "flex" : "none"}
+              display={addLargerStorage == true ? "flex" : "none"}
               extraName="Larger Storage"
               extraPrice={yearlyPlan == true ? largerStoragePrice * 10 : largerStoragePrice}
               planAbreviation={yearlyPlan == true ? "yr" : "mo"}
             />
             <ExtraService
-              display={addCustomProfile == false ? "flex" : "none"}
+              display={addCustomProfile == true ? "flex" : "none"}
               extraName="Customizable Profile"
               extraPrice={yearlyPlan == true ? customProfilePrice * 10 : customProfilePrice}
+              planAbreviation={yearlyPlan == true ? "yr" : "mo"}
+            />
+            {/* ##### TOTAL ##### */}
+            <ExtraService
+              display="flex"
+              fontSize="1.25em"
+              color="hsl(243, 100%, 62%)"
+              weight="700"
+              margin="50px 10px 0px 10px"
+              extraPrice={totalPrice}
+              extraName={yearlyPlan == true ? "Total (per year)" : "Total (per month)"}
               planAbreviation={yearlyPlan == true ? "yr" : "mo"}
             />
           </StepContainer>
