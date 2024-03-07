@@ -83,9 +83,9 @@ function App() {
   const [addOnlineService, setAddOnlineService] = useState(false);
   const [addLargerStorage, setAddLargerStorage] = useState(false);
   const [addCustomProfile, setAddCustomProfile] = useState(false);
-  const [onlineServicePrice, setOnlineServicePrice] = useState(1);
-  const [largerStoragePrice, setLargerStoragePrice] = useState(2);
-  const [customProfilePrice, setCustomProfilePrice] = useState(2);
+  const [onlineServicePrice, setOnlineServicePrice] = useState(0);
+  const [largerStoragePrice, setLargerStoragePrice] = useState(0);
+  const [customProfilePrice, setCustomProfilePrice] = useState(0);
   // ###################################################
   // Step 4 States
   const [totalPrice, setTotalPrice] = useState(0);
@@ -144,25 +144,6 @@ function App() {
 
   const toggleExtraService = (setState, state) => {
     return setState(!state)
-  }
-
-  function CalcTotalPrice() {
-
-    const calcPrice = 0
-
-    if (yearlyPlan == true) {
-      calcPrice =
-        (planPrice * 10) +
-        (onlineServicePrice * 10) +
-        (largerStoragePrice * 10) +
-        (customProfilePrice * 10)
-    } else {
-      calcPrice =
-        planPrice +
-        onlineServicePrice +
-        largerStoragePrice +
-        customProfilePrice
-    }
   }
 
   return (
@@ -288,9 +269,6 @@ function App() {
             <Switch switchFunction={handleChangeYearly} />
           </StepContainer>
 
-          {/* bordercolor={addLargerStorage == true ? 'hsl(243, 100%, 62%)' : ''}
-          bgcolor={addLargerStorage == true ? 'hsl(217, 100%, 97%)' : ''} */}
-
           {/* Step 3 */}
           <StepContainer
             display={index == 3 ? "block" : "none"}
@@ -322,6 +300,43 @@ function App() {
               bordercolor={addCustomProfile == true ? 'hsl(243, 100%, 62%)' : ''}
               bgcolor={addCustomProfile == true ? 'hsl(217, 100%, 97%)' : ''}
             />
+            <button onClick={(e) => {
+              e.preventDefault()
+
+              switch (yearlyPlan) {
+                case true:
+
+                  addOnlineService == true ? setOnlineServicePrice(1) : setOnlineServicePrice(0)
+                  addLargerStorage == true ? setLargerStoragePrice(2) : setLargerStoragePrice(0)
+                  addCustomProfile == true ? setCustomProfilePrice(2) : setCustomProfilePrice(0)
+
+                  setTotalPrice(
+                    (planPrice * 10) +
+                    (onlineServicePrice * 10) +
+                    (largerStoragePrice * 10) +
+                    (customProfilePrice * 10)
+                  )
+                  console.log(totalPrice)
+                  break
+
+                case false:
+
+                  addOnlineService == true ? setOnlineServicePrice(1) : setOnlineServicePrice(0)
+                  addLargerStorage == true ? setLargerStoragePrice(2) : setLargerStoragePrice(0)
+                  addCustomProfile == true ? setCustomProfilePrice(2) : setCustomProfilePrice(0)
+
+                  setTotalPrice(
+                    planPrice +
+                    onlineServicePrice +
+                    largerStoragePrice +
+                    customProfilePrice
+                  )
+                  console.log(totalPrice)
+                  break
+              }
+            }}>
+              ##########
+            </button>
           </StepContainer>
 
           {/* Step 4 Finishing UP */}
@@ -334,8 +349,9 @@ function App() {
             <FinishPlan
               planName={plan}
               planRecurrence={yearlyPlan == true ? "Yearly" : "Monthly"}
-              onclick={(e) => {
+              changeclick={(e) => {
                 e.preventDefault();
+                setIndex(2)
               }}
               planPrice={yearlyPlan == true ? planPrice * 10 : planPrice}
               monthOrYear={yearlyPlan == true ? "year" : "month"}

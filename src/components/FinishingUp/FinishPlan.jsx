@@ -38,7 +38,7 @@ const FinishingPrice = styled.span`
     color: hsl(213, 96%, 18%);
 `
 
-function FinishPlan({ planName, planRecurrence, onclick, planPrice, planAbreviation }) {
+function FinishPlan({ planName, planRecurrence, changeclick, planPrice, planAbreviation }) {
     return (
         <>
             <ChangePlanContainer>
@@ -46,7 +46,7 @@ function FinishPlan({ planName, planRecurrence, onclick, planPrice, planAbreviat
                     <PlanName>
                         {planName} ({planRecurrence})
                     </PlanName>
-                    <ChangePlanBtn onClick={onclick}>
+                    <ChangePlanBtn onClick={changeclick}>
                         Change
                     </ChangePlanBtn>
                 </div>
@@ -54,19 +54,6 @@ function FinishPlan({ planName, planRecurrence, onclick, planPrice, planAbreviat
                     ${planPrice}/{planAbreviation}
                 </FinishingPrice>
             </ChangePlanContainer>
-            {/* <RowContainer
-                margin="50px 10px 0px 10px"
-            >
-                <ExtraParagraph>
-                    Total (per {monthOrYear})
-                </ExtraParagraph>
-                <ExtraServicePrice
-                    font_size="1.25em"
-                    color="hsl(243, 100%, 62%)"
-                    weight="700">
-                    +{totalPrice}$/{planAbreviation}
-                </ExtraServicePrice>
-            </RowContainer> */}
         </>
     )
 }
