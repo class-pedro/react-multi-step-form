@@ -66,7 +66,6 @@ function App() {
 
   const [index, setIndex] = useState(1);
   const [yearlyPlan, setYearlyPlan] = useState(false);
-  const [cart, setCart] = useState([]);
   // Step 1 States
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -119,14 +118,49 @@ function App() {
       setEmptyPhoneNumber(true);
     }
 
+    if (index > 2) {
+
+      addOnlineService == true ? setOnlineServicePrice(1) : setOnlineServicePrice(0);
+      addLargerStorage == true ? setLargerStoragePrice(2) : setLargerStoragePrice(0);
+      addCustomProfile == true ? setCustomProfilePrice(2) : setCustomProfilePrice(0);
+
+      switch (yearlyPlan) {
+        case true:
+
+          setTotalPrice(
+            (planPrice * 10) +
+            (onlineServicePrice * 10) +
+            (largerStoragePrice * 10) +
+            (customProfilePrice * 10)
+          );
+
+          break
+
+        case false:
+
+          setTotalPrice(
+            planPrice +
+            onlineServicePrice +
+            largerStoragePrice +
+            customProfilePrice
+          );
+
+          break
+      }
+
+      setIndex(index + 1);
+
+      return totalPrice;
+    }
+
     if (name && email && phoneNumber !== "" && validEmail(email)) {
       setIndex(index + 1);
     }
   }
 
   function handlePrevClick(e) {
-    e.preventDefault()
-    setIndex(index - 1)
+    e.preventDefault();
+    setIndex(index - 1);
   }
 
   function handleChangeYearly() {
@@ -143,7 +177,7 @@ function App() {
   }
 
   const toggleExtraService = (setState, state) => {
-    return setState(!state)
+    return setState(!state);
   }
 
   return (
@@ -300,43 +334,6 @@ function App() {
               bordercolor={addCustomProfile == true ? 'hsl(243, 100%, 62%)' : ''}
               bgcolor={addCustomProfile == true ? 'hsl(217, 100%, 97%)' : ''}
             />
-            <button onClick={(e) => {
-              e.preventDefault()
-
-              switch (yearlyPlan) {
-                case true:
-
-                  addOnlineService == true ? setOnlineServicePrice(1) : setOnlineServicePrice(0)
-                  addLargerStorage == true ? setLargerStoragePrice(2) : setLargerStoragePrice(0)
-                  addCustomProfile == true ? setCustomProfilePrice(2) : setCustomProfilePrice(0)
-
-                  setTotalPrice(
-                    (planPrice * 10) +
-                    (onlineServicePrice * 10) +
-                    (largerStoragePrice * 10) +
-                    (customProfilePrice * 10)
-                  )
-                  console.log(totalPrice)
-                  break
-
-                case false:
-
-                  addOnlineService == true ? setOnlineServicePrice(1) : setOnlineServicePrice(0)
-                  addLargerStorage == true ? setLargerStoragePrice(2) : setLargerStoragePrice(0)
-                  addCustomProfile == true ? setCustomProfilePrice(2) : setCustomProfilePrice(0)
-
-                  setTotalPrice(
-                    planPrice +
-                    onlineServicePrice +
-                    largerStoragePrice +
-                    customProfilePrice
-                  )
-                  console.log(totalPrice)
-                  break
-              }
-            }}>
-              ##########
-            </button>
           </StepContainer>
 
           {/* Step 4 Finishing UP */}
